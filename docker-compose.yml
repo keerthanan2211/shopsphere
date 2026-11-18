@@ -1,0 +1,40 @@
+# Full stack: MongoDB + Express API + React (nginx).
+#   docker compose up --build
+#   docker compose exec server npm run seed:prod
+# Then open http://localhost:8080
+services:
+  mongo:
+    image: mongo:7
+    volumes:
+      - mongo-data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  server:
+    build: ./server
+    environment:
+      NODE_ENV: production
+      COOKIE_SECURE: "false" # plain http on localhost; remove when serving over HTTPS
+      PORT: 5000
+      MONGODB_URI: mongodb://mongo:27017/shopsphere
+      JWT_SECRET: ${JWT_SECRET:-local-docker-secret-change-me}
+      CLIENT_URL: http://localhost:8080
+      PAYMENT_MODE: ${PAYMENT_MODE:-mock}
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY:-}
+      STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET:-}
+    depends_on:
+      mongo:
+        condition: service_healthy
+
+  client:
+    build: ./client
+    ports:
+      - "8080:80"
+    depends_on:
+      - server
+
+volumes:
+  mongo-data:
