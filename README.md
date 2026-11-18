@@ -1,15 +1,15 @@
 # ShopSphere
 
+[![CI](https://github.com/keerthanan2211/shopsphere/actions/workflows/ci.yml/badge.svg)](https://github.com/keerthanan2211/shopsphere/actions/workflows/ci.yml) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 A full-stack MERN e-commerce store for handcrafted Indian home goods: block-printed textiles from Kutch, brass from Moradabad, blue pottery from Jaipur. Customers browse, filter, review and buy; admins manage products, stock and order fulfilment.
 
 **Stack:** MongoDB · Express · React · Node.js · Redux Toolkit (RTK Query) · Tailwind CSS · Stripe · Docker · GitHub Actions
 
-> **Live demo:** _add your deployed URL here_
-> **Customer:** `customer@shopsphere.dev` / `Shop#2026`
-> **Admin:** `admin@shopsphere.dev` / `Admin#2026`
+**Demo accounts** (created by the seed script):
 
-<!-- Add screenshots after you run the app -->
-<!-- ![Shop](docs/screenshots/shop.png) -->
+- Customer: `customer@shopsphere.dev` / `Shop#2026`
+- Admin: `admin@shopsphere.dev` / `Admin#2026`
 
 ---
 
@@ -156,7 +156,7 @@ shopsphere/
 ### Option 1: Docker
 
 ```bash
-git clone https://github.com/<your-username>/shopsphere.git
+git clone https://github.com/keerthanan2211/shopsphere.git
 cd shopsphere
 docker compose up --build
 docker compose exec server npm run seed:prod     # in a second terminal
@@ -169,7 +169,7 @@ Open **http://localhost:8080** and sign in with a demo account.
 **Prerequisites:** Node.js 20.6+ and MongoDB, either installed locally or a free [MongoDB Atlas](https://www.mongodb.com/atlas) cluster.
 
 ```bash
-git clone https://github.com/<your-username>/shopsphere.git
+git clone https://github.com/keerthanan2211/shopsphere.git
 cd shopsphere
 npm run install:all
 
